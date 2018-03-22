@@ -7,7 +7,7 @@
 <body>
 
 <h2>Registro de nuevos usuarios</h2>
-<form action="http://localhost:11423/Practica1.4/Servlet2" method=post>
+<form action="Servlet2" method=post>
 Nombre: <input type=text name=username>
 <br>
 Password: <input type=password name= pass>
