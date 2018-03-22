@@ -114,7 +114,7 @@ public class HomeController {
 						}
 					}
 					if(variable2==false) {
-						du.addUsuario(usuario, password, email, dni);
+						dao.addUsuario(usuario, password, email, dni);
 						url="usuarioRegistrado.jsp";
 					}
 				}

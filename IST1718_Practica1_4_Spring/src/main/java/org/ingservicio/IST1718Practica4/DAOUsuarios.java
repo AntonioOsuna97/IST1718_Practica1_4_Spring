@@ -4,6 +4,7 @@ package org.ingservicio.IST1718Practica4;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 @Repository
 public class DAOUsuarios implements DAOUsuariosInterfaz {
 	//Añadir libreria spring-jdbc y dependencia junto a la versión
