@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	@Autowired
 	//Al marcarlo con @Autowired, se inyectará, como una instancia de dao, 
 	//un bean de una clase que implemente el interfaz DAOUsuariosInterfaz
+	@Autowired
 	private DAOUsuariosInterfaz dao;
 	
 	/**
@@ -52,22 +52,22 @@ public class HomeController {
 				model.addAttribute("password", lista.get(posicion).getPassword());
 				model.addAttribute("email", lista.get(posicion).getEmail());
 				model.addAttribute("dni", lista.get(posicion).getDni());
-				url="usuario.jsp";
+				url="usuario";
 			}else if(lista.get(posicion).getNombre().equals(usuario) && !usuario.equals("Admin")
 			&& lista.get(posicion).getPassword().equals(pass))  {
 				model.addAttribute("nombre", lista.get(posicion).getNombre());
 				model.addAttribute("password", lista.get(posicion).getPassword());
 				model.addAttribute("email", lista.get(posicion).getEmail());
 				model.addAttribute("dni", lista.get(posicion).getDni());
-				url="usuariodatos.jsp";
+				url="usuariodatos";
 			}
 			
 		}
 		
 		
 		//Significa que el usuario no existe
-		if(!url.equals("usuario.jsp") && !url.equals("usuariodatos.jsp")) {
-			url="registro.jsp";
+		if(!url.equals("usuario") && !url.equals("usuariodatos")) {
+			url="registro";
 		}
 		
 		model.addAttribute("lista", lista);
@@ -76,7 +76,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/Servlet2", method = RequestMethod.GET)
+	@RequestMapping(value = "/Servlet2", method = {RequestMethod.GET,RequestMethod.POST})
 	public String servlet2 (HttpServletRequest request, Model model) {
 
 		//Parameter(...) es del html
@@ -104,7 +104,7 @@ public class HomeController {
 				for(int pos=0;pos<lista.size();pos++) {
 					if(lista.get(pos).getDni().equals(dni) && lista.get(pos).getEmail().equals(email) && 
 							lista.get(pos).getNombre().equals(usuario)) {
-						url="usuarioYaRegistrado.jsp";
+						url="usuarioYaRegistrado";
 						variable=true;
 					
 					}
@@ -113,13 +113,13 @@ public class HomeController {
 					boolean variable2=false;
 					for(int pos=0;pos<lista.size();pos++) {
 						if(lista.get(pos).getDni().equals(dni)) {
-						url="usuarioYaRegistrado.jsp";
+						url="usuarioYaRegistrado";
 					variable2=true;
 						}
 					}
 					if(variable2==false) {
 						dao.addUsuario(usuario, password, email, dni);
-						url="usuarioRegistrado.jsp";
+						url="usuarioRegistrado";
 					}
 				}
 				return url;

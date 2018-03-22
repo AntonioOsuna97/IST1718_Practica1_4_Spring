@@ -3,16 +3,19 @@ package org.ingservicio.IST1718Practica4;
 
 import java.util.List;
 import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-@Repository
+import org.springframework.stereotype.Service;
 //Indica que el bean es un dao
+@Repository
 public class DAOUsuarios implements DAOUsuariosInterfaz {
 	//Añadir libreria spring-jdbc y dependencia junto a la versión
 	public JdbcTemplate jdbcTemplate;
-	private DataSource dataSource;
+	//private DataSource dataSource;
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
-	this.dataSource = dataSource; //Opcional
 	this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
