@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	@Autowired
+	//Al marcarlo con @Autowired, se inyectará, como una instancia de dao, 
+	//un bean de una clase que implemente el interfaz DAOUsuariosInterfaz
 	private DAOUsuariosInterfaz dao;
 	
 	/**
@@ -44,17 +46,19 @@ public class HomeController {
 		for(posicion=0;posicion<lista.size();posicion++) {
 			if(lista.get(posicion).getNombre().equals(usuario) && usuario.equals("Admin")
 					&& lista.get(posicion).getPassword().equals(pass)) {
+				//En Spring se utiliza model.addAttribute en vez de req.setAttribute para 
+				//agregar el atributo proporcionado bajo el nombre proporcionado.
 				model.addAttribute("nombre", lista.get(posicion).getNombre());
-				request.setAttribute("password", lista.get(posicion).getPassword());
-				request.setAttribute("email", lista.get(posicion).getEmail());
-				request.setAttribute("dni", lista.get(posicion).getDni());
+				model.addAttribute("password", lista.get(posicion).getPassword());
+				model.addAttribute("email", lista.get(posicion).getEmail());
+				model.addAttribute("dni", lista.get(posicion).getDni());
 				url="usuario.jsp";
 			}else if(lista.get(posicion).getNombre().equals(usuario) && !usuario.equals("Admin")
 			&& lista.get(posicion).getPassword().equals(pass))  {
-				request.setAttribute("nombre", lista.get(posicion).getNombre());
-				request.setAttribute("password", lista.get(posicion).getPassword());
-				request.setAttribute("email", lista.get(posicion).getEmail());
-				request.setAttribute("dni", lista.get(posicion).getDni());
+				model.addAttribute("nombre", lista.get(posicion).getNombre());
+				model.addAttribute("password", lista.get(posicion).getPassword());
+				model.addAttribute("email", lista.get(posicion).getEmail());
+				model.addAttribute("dni", lista.get(posicion).getDni());
 				url="usuariodatos.jsp";
 			}
 			
@@ -66,7 +70,7 @@ public class HomeController {
 			url="registro.jsp";
 		}
 		
-		request.setAttribute("lista", lista);
+		model.addAttribute("lista", lista);
 
 		return url;
 	}
@@ -78,19 +82,19 @@ public class HomeController {
 		//Parameter(...) es del html
 				String usuario = request.getParameter("username");
 				//Lo añadimos a la petición.
-				request.setAttribute("Nombre", usuario);
+				model.addAttribute("Nombre", usuario);
 				
 				String password = request.getParameter("pass");
 				//Lo añadimos a la petición.
-				request.setAttribute("Password", password);
+				model.addAttribute("Password", password);
 				
 				String email = request.getParameter("email");
 				//Lo añadimos a la petición.
-				request.setAttribute("Email", email);	
+				model.addAttribute("Email", email);	
 				
 				String dni = request.getParameter("dni");
 				//Lo añadimos a la petición.
-				request.setAttribute("DNI", dni);
+				model.addAttribute("DNI", dni);
 				
 			
 				List <DTOUsuarios> lista = dao.leeUsuarios();
