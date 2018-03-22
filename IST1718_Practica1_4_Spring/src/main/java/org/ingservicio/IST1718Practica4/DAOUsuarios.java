@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
+//Indica que el bean es un dao
 public class DAOUsuarios implements DAOUsuariosInterfaz {
 	//Añadir libreria spring-jdbc y dependencia junto a la versión
 	public JdbcTemplate jdbcTemplate;
