@@ -16,7 +16,7 @@ Email: <input type=text name= email>
 <br>
 DNI: <input type=text name= dni maxlength="8">
 <br>
-<input type=submit value=Iniciar>
+<input type=submit value=Registro>
 </form>
 
 </body>

@@ -81,19 +81,19 @@ public class HomeController {
 
 		//Parameter(...) es del html
 				String usuario = request.getParameter("username");
-				//Lo añadimos a la petición.
+				//Lo añadimos al model
 				model.addAttribute("Nombre", usuario);
 				
 				String password = request.getParameter("pass");
-				//Lo añadimos a la petición.
+				//Lo añadimos al model
 				model.addAttribute("Password", password);
 				
 				String email = request.getParameter("email");
-				//Lo añadimos a la petición.
+				//Lo añadimos al model
 				model.addAttribute("Email", email);	
 				
 				String dni = request.getParameter("dni");
-				//Lo añadimos a la petición.
+				//Lo añadimos al model
 				model.addAttribute("DNI", dni);
 				
 			
